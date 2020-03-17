@@ -17,6 +17,10 @@ export class EmployeeController {
     public leaveTypeRepository: LeaveTypeRepository,
   ) { }
 
+  getExpiredLeaves = (total: number) => {
+    const currentDate = new Date()
+    return (total / 12) * Number(currentDate.getMonth())
+  }
   @post('/employee', {
     responses: {
       '200': {
@@ -39,6 +43,13 @@ export class EmployeeController {
   ): Promise<Object> {
     try {
       const leaveTypes = await this.leaveTypeRepository.find()
+
+      leaveTypes.forEach(leave => {
+        const expiredLeaves = Math.round(this.getExpiredLeaves(leave.total))
+        leave.available -= expiredLeaves
+        leave.availed += expiredLeaves
+      })
+
       employeeRequest.leaves = leaveTypes;
 
       //validate employee schema

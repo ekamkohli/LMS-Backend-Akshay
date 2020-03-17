@@ -13,20 +13,22 @@ export class Employee extends Entity {
       available: Joi.number().required()
     })
 
-    const schema = {
+    const schema = Joi.object({
       firstName: Joi.string().min(3).max(50).required(),
       middleName: Joi.string().min(0).max(255).allow(""),
       lastName: Joi.string().min(3).max(255).required(),
       email: Joi.string().min(5).max(255).email(),
       empId: Joi.number().min(1),
       doj: Joi.string().min(5).max(255).required(),
+      dob: Joi.string().required(),
+      stream: Joi.string().valid("engineering", "architect", "testing"),
       gender: Joi.string().valid("male", "female", "other"),
       status: Joi.string(),
       role: Joi.string().min(5).max(255).required(),
       approver: Joi.string().required().allow(""),
       password: Joi.string().min(5).max(1024).required(),
       leaves: Joi.array().items(objectSchema)
-    }
+    }).unknown(true)
     return Joi.validate(employeeRequest, schema);
   }
 
@@ -75,6 +77,18 @@ export class Employee extends Entity {
     type: 'string',
     required: true,
   })
+  dob: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  stream: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
   role: string;
 
   @property({
@@ -100,6 +114,16 @@ export class Employee extends Entity {
     required: true,
   })
   password: string;
+
+  @property({
+    type: 'string',
+  })
+  emergencyContactName?: string;
+
+  @property({
+    type: 'string',
+  })
+  emergencyContactNumber?: string;
 
   @property.array(LeaveType)
   leaves: LeaveType[];
