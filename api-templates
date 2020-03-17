@@ -1,0 +1,27 @@
+Employee 
+{
+  "firstName": "Akshay",
+  "middleName": "",
+  "lastName": "Kumar",
+  "email": "akshay.kumar@block8.com",
+  "empId": 1,
+  "doj": "09/02/1998",
+  "role": "admin",
+  "approver": "",
+  "status": "active",
+  "gender": "male",
+  "password": "string"
+}
+
+Leave
+{
+  "employeeId": "5e663fb2bf8dfc7252a0d9a9",
+  "approverId": "5e6629dbc281eb613e74baad",
+  "startDate": "2020/03/15",
+  "endDate": "2020/03/18",
+  "leaveType": "",
+  "halfDay": true,
+  "description": "string",
+  "status": "pending",
+  "message": "string"
+}

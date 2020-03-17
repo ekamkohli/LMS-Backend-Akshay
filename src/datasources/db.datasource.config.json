@@ -1,0 +1,12 @@
+{
+  "name": "db",
+  "connector": "mongodb",
+  "url": "mongodb+srv://lmssuperadmin:lmsalladmin@lms-ily54.mongodb.net/test?retryWrites=true&w=majority",
+  "host": "localhost",
+  "port": 27017,
+  "user": "lmssuperadmin",
+  "password": "lmsalladmin",
+  "database": "test",
+  "useUnifiedTopology": true,
+  "useNewUrlParser": true
+}
